@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block start %}
+<div class="container mt-5">
+<form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data"> 
+  {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Receipe Name</label>
+      <input type="text" name="receipe_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Receipe Description</label>
+      <input type="text" name="receipe_description" class="form-control">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Receipe image</label>
+      <input type="file" class="form-control" name="receipe_image">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> 
+ </div>
+
+
+ <table class="table container">
+  <thead>
+    <tr>
+      <th scope="col">r.no</th>
+      <th scope="col">Receipe Name</th>
+      <th scope="col">Receipe Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for receipe in receipes %}
+    <tr>
+      <td>{{forloop.counter}}</td>
+      <td>{{receipe.receipe_name}}</td>
+      <td>{{receipe.receipe_description}}</td>
+      <td>
+        <img src="/media/{{receipe.receipe_image}}" alt="" style="height: 70px;"></td>
+      <!-- <td>{{receipe.receipe_name}}</td> -->
+        <td><a href="/delete-receipe/{{receipe.id}}" class="btn btn-primary">Delete</a>
+        </td>
+        <td>
+          <a href="/update-receipe/{{receipe.id}}" class="btn btn-primary">update</a>
+        </td>
+    </tr>
+
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+{% endblock %}

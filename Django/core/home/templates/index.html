@@ -1,11 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>django server</title>
-</head>
-<body>
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, id.</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block start %}
+
+   <h1>Home page</h1>
+    <table style="border: 2px solid red;"> 
+        <tr>
+            <th>s no</th>
+            <th>name</th>
+            <th>age</th>
+            <th>eligible</th>
+        </tr>
+        {% for people in peoples %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{people.name}}</td>
+            <td>{{people.age}}</td>
+
+            <td>
+                {% if people.age >= 18 %}
+                Vote
+                {% else %}
+                cant vote
+                {%  endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+    {% endblock %}
