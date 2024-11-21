@@ -22,12 +22,15 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from home.views import home, contact, about
-from vege.views import receipes, delete_receipe,update_receipe
+from vege.views import receipes, delete_receipe,update_receipe, register,login_page, logout_page
 
 
 urlpatterns = [
     path('', home, name="home"),
     path('receipes/', receipes, name='receipes'),
+    path('login/', login_page, name='login_page'),
+    path('logout/', logout_page, name='logout_page'),
+    path('register/', register, name='register'),
     path('delete-receipe/<id>', delete_receipe, name='delete_receipe'),
     path('update-receipe/<id>', update_receipe, name='update_receipe'),
     path('contact/', contact, name="contact"),
